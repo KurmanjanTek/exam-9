@@ -154,6 +154,89 @@ namespace exam_9_Electronic_wallet.DAL.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("exam_9_Electronic_wallet.Models.ProviderAccount", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("AccountNumber")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Balance")
+                        .HasColumnType("numeric");
+
+                    b.Property<int>("ServiceProviderId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ServiceProviderId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("ProviderAccounts");
+                });
+
+            modelBuilder.Entity("exam_9_Electronic_wallet.Models.ServiceProvider", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ServiceProviders");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "MegaCom",
+                            Type = "Mobile"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "O!",
+                            Type = "Mobile"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Beeline",
+                            Type = "Mobile"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Kyrgyztelecom",
+                            Type = "Internet"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Electricity",
+                            Type = "Utilities"
+                        });
+                });
+
             modelBuilder.Entity("exam_9_Electronic_wallet.Models.Transaction", b =>
                 {
                     b.Property<int>("Id")
@@ -332,6 +415,25 @@ namespace exam_9_Electronic_wallet.DAL.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("exam_9_Electronic_wallet.Models.ProviderAccount", b =>
+                {
+                    b.HasOne("exam_9_Electronic_wallet.Models.ServiceProvider", "ServiceProvider")
+                        .WithMany("ProviderAccounts")
+                        .HasForeignKey("ServiceProviderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("exam_9_Electronic_wallet.Models.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ServiceProvider");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("exam_9_Electronic_wallet.Models.Transaction", b =>
                 {
                     b.HasOne("exam_9_Electronic_wallet.Models.Wallet", "Wallet")
@@ -352,6 +454,11 @@ namespace exam_9_Electronic_wallet.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("exam_9_Electronic_wallet.Models.ServiceProvider", b =>
+                {
+                    b.Navigation("ProviderAccounts");
                 });
 #pragma warning restore 612, 618
         }

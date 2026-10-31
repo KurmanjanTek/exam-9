@@ -26,6 +26,9 @@ builder.Services.AddDbContext<EWalletContext>(options => options.UseNpgsql(conne
 
 builder.Services.AddScoped<IWalletRepository, WalletRepository>();
 builder.Services.AddScoped<IWalletService, WalletService>();
+
+builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
+builder.Services.AddScoped<IProviderService, ProviderService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
