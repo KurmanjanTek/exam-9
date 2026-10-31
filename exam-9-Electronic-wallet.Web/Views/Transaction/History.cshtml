@@ -1,0 +1,61 @@
+@model exam_9_Electronic_wallet.ViewModels.TransactionsHistoryViewModel
+@{
+    ViewData["Title"] = "История транзакций";
+}
+<h2>История операций</h2>
+
+<form>
+    <div class="col-md-4">
+        <label>Дата с</label>
+        <input type="date" name="dateFrom"
+               value="@Model.DateFrom?.ToString("yyyy-MM-dd")"
+               class="form-control" />
+    </div>
+
+    <div class="col-md-4">
+        <label>Дата по</label>
+        <input type="date" name="dateTo"
+               value="@Model.DateTo?.ToString("yyyy-MM-dd")"
+               class="form-control" />
+    </div>
+
+    <div class="col-md-4 mt-4">
+        <button type="submit" class="btn btn-primary">
+            Фильтровать
+        </button>
+
+        <a asp-action="History" class="btn btn-secondary">
+            Сбросить
+        </a>
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Дата</th>
+        <th>Тип операции</th>
+        <th>Сумма</th>
+        <th>Контрагент</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    @foreach (var transaction in Model.Transactions)
+    {
+        <tr>
+            <td>@transaction.CreatedAt.ToLocalTime().ToString("dd.MM.yyyy HH:mm")</td>
+            <td>@transaction.Type</td>
+            <td>@transaction.Amount.ToString("N2") сом</td>
+            <td>
+                @(transaction.CounterpartyAccountNumber ?? "—")
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+@if (!Model.Transactions.Any())
+{
+    <p>Транзакций пока нет.</p>
+}
+

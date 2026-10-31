@@ -1,0 +1,137 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h4>Пополнение счёта</h4>
+
+<form id="topUpForm">
+    @Html.AntiForgeryToken()
+    <div class="mb-3">
+        <label>Номер счёта</label>
+        <input name="AccountNumber"
+               class="form-control"
+               maxlength="6"
+               pattern="[0-9]{6}"
+               required />
+    </div>
+    <div class="mb-3">
+        <label>Сумма пополнения</label>
+        <input name="Amount"
+               type="number"
+               min="0.01"
+               step="0.01"
+               class="form-control"
+               required />
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Пополнить
+    </button>
+
+</form>
+
+<div id="topUpMessage" class="mt-3"></div>
+
+
+@if (User.Identity?.IsAuthenticated == true) 
+{ 
+    <hr />
+    <h4>Перевод средств</h4>
+
+    <form id="transferForm">
+        @Html.AntiForgeryToken()
+
+        <div class="mb-3">
+            <label>Номер счёта получателя</label>
+            <input name="RecipientAccountNumber"
+                   class="form-control"
+                   maxlength="6"
+                   pattern="[0-9]{6}"
+                   required />
+        </div>
+
+        <div class="mb-3">
+            <label>Сумма перевода</label>
+            <input name="Amount"
+                   type="number"
+                   min="0.01"
+                   step="0.01"
+                   class="form-control"
+                   required />
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            Перевести
+        </button>
+    </form>
+
+    @if (User.Identity?.IsAuthenticated == true) 
+    { 
+        <h3>Мой кошелёк</h3>
+        <p>Номер счёта: @ViewBag.AccountNumber</p>
+
+        <p>Баланс: @ViewBag.Balance</p>
+    }
+    <div id="transferMessage" class="mt-3"></div>
+    
+    <a asp-controller="Transaction"
+       asp-action="History"
+       class="btn btn-info">
+        История операций
+    </a>
+}
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+
+@section Scripts {
+    <script>
+    document.getElementById("topUpForm")?.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        try {
+            const response = await fetch("/Home/TopUp", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            const message = document.getElementById("topUpMessage");
+            message.textContent = result.message;
+            message.className = result.success
+                ? "alert alert-success mt-3"
+                : "alert alert-danger mt-3";
+            if (result.success) {
+                this.reset();
+            }
+        }
+        catch (error) {
+            document.getElementById("topUpMessage").textContent =
+                "Ошибка при выполнении пополнения.";
+        }
+    });
+
+    document.getElementById("transferForm")?.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        try {
+            const response = await fetch("/Home/Transfer", {
+                method: "POST",
+                body: formData
+            });
+            const result = await response.json();
+            const message = document.getElementById("transferMessage");
+            message.textContent = result.message;
+            message.className = result.success
+                ? "alert alert-success mt-3"
+                : "alert alert-danger mt-3";
+            if (result.success) {
+                this.reset();
+                location.reload();
+            }
+        }
+        catch (error) {
+            document.getElementById("transferMessage").textContent =
+                "Ошибка при выполнении перевода.";
+        }
+    });
+</script>
+}

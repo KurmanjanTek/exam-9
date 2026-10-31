@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exam-9-Electronic-wallet.Web", "exam-9-Electronic-wallet.Web\exam-9-Electronic-wallet.Web.csproj", "{E54BFFF5-00F5-44FD-81E3-67972A141C80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exam-9-Electronic-wallet.BLL", "exam-9-Electronic-wallet.BLL\exam-9-Electronic-wallet.BLL.csproj", "{A9AAB521-7EC4-457A-BE4A-B1D3AD32EDDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exam-9-Electronic-wallet.DAL", "exam-9-Electronic-wallet.DAL\exam-9-Electronic-wallet.DAL.csproj", "{01DC18F2-BF20-40E4-845B-3C9028921A86}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "exam-9-Electronic-wallet.Models", "exam-9-Electronic-wallet.Models\exam-9-Electronic-wallet.Models.csproj", "{513A4AB3-A73C-49BC-868A-B82F5790E889}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E54BFFF5-00F5-44FD-81E3-67972A141C80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54BFFF5-00F5-44FD-81E3-67972A141C80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54BFFF5-00F5-44FD-81E3-67972A141C80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54BFFF5-00F5-44FD-81E3-67972A141C80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9AAB521-7EC4-457A-BE4A-B1D3AD32EDDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9AAB521-7EC4-457A-BE4A-B1D3AD32EDDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9AAB521-7EC4-457A-BE4A-B1D3AD32EDDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9AAB521-7EC4-457A-BE4A-B1D3AD32EDDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01DC18F2-BF20-40E4-845B-3C9028921A86}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01DC18F2-BF20-40E4-845B-3C9028921A86}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01DC18F2-BF20-40E4-845B-3C9028921A86}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01DC18F2-BF20-40E4-845B-3C9028921A86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{513A4AB3-A73C-49BC-868A-B82F5790E889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{513A4AB3-A73C-49BC-868A-B82F5790E889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{513A4AB3-A73C-49BC-868A-B82F5790E889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{513A4AB3-A73C-49BC-868A-B82F5790E889}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,30 @@
+@model exam_9_Electronic_wallet.ViewModels.RegisterViewModel
+@{
+    ViewData["Title"] = "Регистрация";
+}
+
+<h2>Регистрация</h2>
+<form asp-controller="Account" asp-action="Register" method="post">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Электронная почта</label>
+        <input asp-for="Email" class="form-control" placeholder="Введите email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Пароль</label>
+        <input asp-for="Password" type="password" class="form-control" placeholder="Введите пароль" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ConfirmPassword" class="form-label">Подтвердите пароль</label>
+        <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Повторите пароль" />
+        <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+</form>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

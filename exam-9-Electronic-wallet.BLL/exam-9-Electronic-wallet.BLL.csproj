@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <RootNamespace>exam_9_Electronic_wallet.BLL</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\exam-9-Electronic-wallet.DAL\exam-9-Electronic-wallet.DAL.csproj" />
+      <ProjectReference Include="..\exam-9-Electronic-wallet.Models\exam-9-Electronic-wallet.Models.csproj" />
+    </ItemGroup>
+
+</Project>
